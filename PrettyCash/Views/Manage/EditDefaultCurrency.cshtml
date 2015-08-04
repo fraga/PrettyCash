@@ -1,0 +1,38 @@
+﻿@model PrettyCash.Models.DefaultCurrencyViewModel
+
+@{
+    ViewBag.Title = "EditDefaultCurrency";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Edit Default Currency</h2>
+
+
+@using (Html.BeginForm("SetDefaultCurrency", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    
+
+    
+    <div class="form-horizontal">
+        <h4>Setup your default currency here</h4>
+        <hr />
+        @Html.HiddenFor(m => m.UserCurrencyId)
+        @Html.HiddenFor(m => m.CurrencyId)
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.DropDownListFor(m => m.UserCurrencyId, Model.Currencies)
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

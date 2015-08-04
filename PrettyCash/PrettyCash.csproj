@@ -208,13 +208,36 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508032328586_InitialCreate.cs" />
+    <Compile Include="Migrations\201508032328586_InitialCreate.Designer.cs">
+      <DependentUpon>201508032328586_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508032349152_AddTransactions.cs" />
+    <Compile Include="Migrations\201508032349152_AddTransactions.Designer.cs">
+      <DependentUpon>201508032349152_AddTransactions.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508040024029_AddUserCurrency.cs" />
+    <Compile Include="Migrations\201508040024029_AddUserCurrency.Designer.cs">
+      <DependentUpon>201508040024029_AddUserCurrency.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201508040122365_TransactionModifiedDateNullable.cs" />
+    <Compile Include="Migrations\201508040122365_TransactionModifiedDateNullable.Designer.cs">
+      <DependentUpon>201508040122365_TransactionModifiedDateNullable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Currency.cs" />
+    <Compile Include="Models\DefaultCurrencyViewModel.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ITraceable.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
+    <Compile Include="Models\Transaction.cs" />
+    <Compile Include="Models\UserCurrency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\ApplicationOAuthProvider.cs" />
     <Compile Include="Results\ChallengeResult.cs" />
@@ -306,6 +329,12 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Scripts\jquery-1.10.2.min.map" />
+    <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Transactions\Delete.cshtml" />
+    <Content Include="Views\Transactions\Details.cshtml" />
+    <Content Include="Views\Transactions\Edit.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
+    <Content Include="Views\Manage\EditDefaultCurrency.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,6 +345,20 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="packages.config" />
     <None Include="Project_Readme.html" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\201508032328586_InitialCreate.resx">
+      <DependentUpon>201508032328586_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508032349152_AddTransactions.resx">
+      <DependentUpon>201508032349152_AddTransactions.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508040024029_AddUserCurrency.resx">
+      <DependentUpon>201508040024029_AddUserCurrency.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508040122365_TransactionModifiedDateNullable.resx">
+      <DependentUpon>201508040122365_TransactionModifiedDateNullable.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

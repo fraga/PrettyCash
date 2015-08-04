@@ -7,6 +7,7 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PrettyCash.Models;
+using System.Collections.Generic;
 
 namespace PrettyCash.Controllers
 {
@@ -15,6 +16,7 @@ namespace PrettyCash.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -318,6 +320,48 @@ namespace PrettyCash.Controllers
             }
             var result = await UserManager.AddLoginAsync(User.Identity.GetUserId(), loginInfo.Login);
             return result.Succeeded ? RedirectToAction("ManageLogins") : RedirectToAction("ManageLogins", new { Message = ManageMessageId.Error });
+        }
+
+        public async Task<ActionResult> EditDefaultCurrency(DefaultCurrencyViewModel model)
+        {
+            DefaultCurrencyViewModel defaultUserCurrency = new DefaultCurrencyViewModel();
+            
+            var user = db.Users.Find(User.Identity.GetUserId());
+
+            var userCurrency = db.UserCurrency.Where(c => c.ApplicationUser.Id == user.Id);
+            var sysDefaultCur = db.Currencies.Where(c => c.ISO == "USD").First();
+
+            //If we didn't find, setup it first
+            if(!userCurrency.Any())
+            {
+                defaultUserCurrency.CurrencyId = sysDefaultCur.Id;
+                UserCurrency userCur = new UserCurrency { ApplicationUser = user, Currency = sysDefaultCur };
+
+                db.Entry(userCur).State = System.Data.Entity.EntityState.Added;
+                await db.SaveChangesAsync();
+            }
+            else
+                defaultUserCurrency.CurrencyId = userCurrency.First().Currency.Id;
+
+            defaultUserCurrency.Currencies = new SelectList(db.Currencies.OrderBy(c => c.ISO).ToList(), "Id", "CurrencyDisplay", defaultUserCurrency.CurrencyId);
+            defaultUserCurrency.UserCurrencyId = userCurrency.First().Id;
+
+            return View(defaultUserCurrency);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<ActionResult> SetDefaultCurrency([Bind(Include = "CurrencyId, UserCurrencyId")] DefaultCurrencyViewModel defaultCurrency)
+        {
+            if (ModelState.IsValid)
+            {
+                var userCurrency = await db.UserCurrency.FindAsync(defaultCurrency.UserCurrencyId);
+                userCurrency.Currency = await db.Currencies.FindAsync(defaultCurrency.CurrencyId);
+
+                db.Entry(userCurrency).State = System.Data.Entity.EntityState.Modified;
+                await db.SaveChangesAsync();
+            }
+            return View();
         }
 
         protected override void Dispose(bool disposing)

@@ -31,5 +31,9 @@ namespace PrettyCash.Models
         {
             return new ApplicationDbContext();
         }
+
+        public System.Data.Entity.DbSet<PrettyCash.Models.Transaction> Transactions { get; set; }
+        public System.Data.Entity.DbSet<PrettyCash.Models.Currency> Currencies { get; set; }
+        public System.Data.Entity.DbSet<PrettyCash.Models.UserCurrency> UserCurrency { get; set; }
     }
 }
