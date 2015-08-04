@@ -324,8 +324,6 @@ namespace PrettyCash.Controllers
 
         public async Task<ActionResult> EditDefaultCurrency(DefaultCurrencyViewModel model)
         {
-            DefaultCurrencyViewModel defaultUserCurrency = new DefaultCurrencyViewModel();
-            
             var user = db.Users.Find(User.Identity.GetUserId());
 
             var userCurrency = db.UserCurrency.Where(c => c.ApplicationUser.Id == user.Id);
@@ -334,19 +332,19 @@ namespace PrettyCash.Controllers
             //If we didn't find, setup it first
             if(!userCurrency.Any())
             {
-                defaultUserCurrency.CurrencyId = sysDefaultCur.Id;
+                model.CurrencyId = sysDefaultCur.Id;
                 UserCurrency userCur = new UserCurrency { ApplicationUser = user, Currency = sysDefaultCur };
 
                 db.Entry(userCur).State = System.Data.Entity.EntityState.Added;
                 await db.SaveChangesAsync();
             }
             else
-                defaultUserCurrency.CurrencyId = userCurrency.First().Currency.Id;
+                model.CurrencyId = userCurrency.First().Currency.Id;
 
-            defaultUserCurrency.Currencies = new SelectList(db.Currencies.OrderBy(c => c.ISO).ToList(), "Id", "CurrencyDisplay", defaultUserCurrency.CurrencyId);
-            defaultUserCurrency.UserCurrencyId = userCurrency.First().Id;
+            model.Currencies = new SelectList(db.Currencies.OrderBy(c => c.ISO).ToList(), "Id", "CurrencyDisplay", model.CurrencyId);
+            model.UserCurrencyId = userCurrency.First().Id;
 
-            return View(defaultUserCurrency);
+            return View(model);
         }
 
         [HttpPost]
