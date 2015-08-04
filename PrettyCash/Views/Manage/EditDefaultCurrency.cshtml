@@ -19,7 +19,15 @@
         <hr />
         @Html.HiddenFor(m => m.UserCurrencyId)
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        @Html.DropDownListFor(m => m.CurrencyId, Model.Currencies)
+        
+
+        <div class="form-group">
+            @Html.LabelFor(m => m.CurrencyId, new { @class = "col-md-2 control-label" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(m => m.CurrencyId, Model.Currencies)
+            </div>
+        </div>
+
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
                 <input type="submit" value="Save" class="btn btn-default" />
