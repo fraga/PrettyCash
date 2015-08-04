@@ -71,7 +71,8 @@ namespace PrettyCash.Controllers
                 transaction.Id = Guid.NewGuid();
                 transaction.CreatedDateTime = DateTime.UtcNow;
                 transaction.CreatedBy = db.Users.Find(User.Identity.GetUserId());
-
+                transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.CreatedBy.Id).First().Currency;
+                
                 db.Transactions.Add(transaction);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -106,7 +107,8 @@ namespace PrettyCash.Controllers
             {
                 transaction.ModifiedDateTime = DateTime.UtcNow;
                 transaction.ModifiedBy = db.Users.Find(User.Identity.GetUserId());
-                
+                transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.CreatedBy.Id).First().Currency;
+
                 db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
