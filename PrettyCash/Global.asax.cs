@@ -15,6 +15,7 @@ namespace PrettyCash
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            CacheConfig.RegisterCurrencyCache();
         }
     }
 }

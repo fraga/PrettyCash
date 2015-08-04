@@ -8,6 +8,7 @@ using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using PrettyCash.Models;
 using System.Collections.Generic;
+using PrettyCash.Caching;
 
 namespace PrettyCash.Controllers
 {
@@ -325,10 +326,11 @@ namespace PrettyCash.Controllers
         public async Task<ActionResult> EditDefaultCurrency(DefaultCurrencyViewModel model)
         {
             var user = db.Users.Find(User.Identity.GetUserId());
+            var currencies = CurrencyCaching.GetSet();
 
             var userCurrency = db.UserCurrency.Where(c => c.ApplicationUser.Id == user.Id);
-            var sysDefaultCur = db.Currencies.Where(c => c.ISO == "USD").First();
-
+            var sysDefaultCur = currencies.Where(c => c.ISO == "USD").First();
+            
             //If we didn't find, setup it first
             if(!userCurrency.Any())
             {
@@ -336,12 +338,13 @@ namespace PrettyCash.Controllers
                 UserCurrency userCur = new UserCurrency { ApplicationUser = user, Currency = sysDefaultCur };
 
                 db.Entry(userCur).State = System.Data.Entity.EntityState.Added;
+                db.Entry(userCur.Currency).State = System.Data.Entity.EntityState.Unchanged;
                 await db.SaveChangesAsync();
             }
             else
                 model.CurrencyId = userCurrency.First().Currency.Id;
 
-            model.Currencies = new SelectList(db.Currencies.OrderBy(c => c.ISO).ToList(), "Id", "CurrencyDisplay", model.CurrencyId);
+            model.Currencies = new SelectList(currencies, "Id", "CurrencyDisplay", model.CurrencyId);
             model.UserCurrencyId = userCurrency.First().Id;
 
             return View(model);
