@@ -362,7 +362,7 @@ namespace PrettyCash.Controllers
                 db.Entry(userCurrency).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
             }
-            return View();
+            return RedirectToAction("Index", "Home");
         }
 
         protected override void Dispose(bool disposing)
