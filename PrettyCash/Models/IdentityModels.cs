@@ -35,5 +35,7 @@ namespace PrettyCash.Models
         public System.Data.Entity.DbSet<PrettyCash.Models.Transaction> Transactions { get; set; }
         public System.Data.Entity.DbSet<PrettyCash.Models.Currency> Currencies { get; set; }
         public System.Data.Entity.DbSet<PrettyCash.Models.UserCurrency> UserCurrency { get; set; }
+
+        public System.Data.Entity.DbSet<PrettyCash.Models.ExchangeRate> ExchangeRates { get; set; }
     }
 }
