@@ -232,6 +232,10 @@
     <Compile Include="Migrations\201508040122365_TransactionModifiedDateNullable.Designer.cs">
       <DependentUpon>201508040122365_TransactionModifiedDateNullable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508042328565_AddExchangeRate.cs" />
+    <Compile Include="Migrations\201508042328565_AddExchangeRate.Designer.cs">
+      <DependentUpon>201508042328565_AddExchangeRate.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Currency.cs" />
@@ -363,6 +367,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508040122365_TransactionModifiedDateNullable.resx">
       <DependentUpon>201508040122365_TransactionModifiedDateNullable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508042328565_AddExchangeRate.resx">
+      <DependentUpon>201508042328565_AddExchangeRate.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
