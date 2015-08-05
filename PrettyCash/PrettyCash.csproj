@@ -209,6 +209,7 @@
     <Compile Include="Caching\Caching.cs" />
     <Compile Include="Caching\CurrencyCaching.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\ExchangeRatesController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\MeController.cs" />
