@@ -107,7 +107,7 @@ namespace PrettyCash.Controllers
             {
                 transaction.ModifiedDateTime = DateTime.UtcNow;
                 transaction.ModifiedBy = db.Users.Find(User.Identity.GetUserId());
-                transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.CreatedBy.Id).First().Currency;
+                transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.ModifiedBy.Id).First().Currency;
 
                 db.Entry(transaction).State = EntityState.Modified;
                 db.SaveChanges();
