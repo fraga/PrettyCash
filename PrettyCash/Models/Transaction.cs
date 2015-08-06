@@ -23,6 +23,11 @@ namespace PrettyCash.Models
 
         public virtual Currency Currency { get; set; }
 
+        [StringLength(500)]
+        [Display(Name = "Notes")]
+        [DataType(DataType.MultilineText)]
+        public string Notes { get; set; }
+
         //traceable
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }

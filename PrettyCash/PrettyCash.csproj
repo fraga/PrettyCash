@@ -237,6 +237,10 @@
     <Compile Include="Migrations\201508042328565_AddExchangeRate.Designer.cs">
       <DependentUpon>201508042328565_AddExchangeRate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201508060146260_AddNotesFieldToTransaction.cs" />
+    <Compile Include="Migrations\201508060146260_AddNotesFieldToTransaction.Designer.cs">
+      <DependentUpon>201508060146260_AddNotesFieldToTransaction.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Currency.cs" />
@@ -371,6 +375,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201508042328565_AddExchangeRate.resx">
       <DependentUpon>201508042328565_AddExchangeRate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201508060146260_AddNotesFieldToTransaction.resx">
+      <DependentUpon>201508060146260_AddNotesFieldToTransaction.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
