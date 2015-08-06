@@ -14,6 +14,7 @@ namespace PrettyCash.Models
         /// <summary>
         /// Amount in monetary standard
         /// </summary>
+        [Display(Name = "Amount")]
         public decimal AmountMST { get; set; }
 
         /// <summary>
