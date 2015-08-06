@@ -35,7 +35,7 @@ namespace PrettyCash.Controllers
         // GET: Transactions
         public ActionResult Index()
         {
-            return View(db.Transactions.ToList());
+            return View(db.Transactions.OrderByDescending(t => t.CreatedDateTime).ToList());
         }
 
         // GET: Transactions/Details/5
