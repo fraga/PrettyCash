@@ -64,7 +64,7 @@ namespace PrettyCash.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,AmountMST,AmountCur,CreatedDateTime,ModifiedDateTime")] Transaction transaction)
+        public ActionResult Create([Bind(Include = "Id, AmountMST, Notes")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
@@ -101,7 +101,7 @@ namespace PrettyCash.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, AmountMST, AmountCur, CreatedDateTime,ModifiedDateTime")] Transaction transaction)
+        public ActionResult Edit([Bind(Include = "Id, AmountMST, AmountCur, CreatedDateTime, CreatedBy, ModifiedBy, ModifiedDateTime, Notes")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
