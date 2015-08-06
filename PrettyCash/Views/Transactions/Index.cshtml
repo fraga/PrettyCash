@@ -16,7 +16,7 @@
             @Html.DisplayNameFor(model => model.AmountMST)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AmountCur)
+            @Html.DisplayNameFor(model => model.Currency)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.Notes)
@@ -36,7 +36,7 @@
             @Html.DisplayFor(modelItem => item.AmountMST)
         </td>
         <td>
-            @Html.DisplayFor(modelItem => item.AmountCur)
+            @Html.DisplayFor(modelItem => item.Currency.ISO)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
