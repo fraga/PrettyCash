@@ -9,6 +9,7 @@ namespace PrettyCash.Areas.HelpPage.Controllers
     /// <summary>
     /// The controller that will handle requests for the help page.
     /// </summary>
+    [System.Web.Mvc.Authorize]
     public class HelpController : Controller
     {
         private const string ErrorViewName = "Error";
