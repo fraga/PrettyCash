@@ -35,6 +35,9 @@ namespace PrettyCash.Controllers
         // GET: Transactions
         public ActionResult Index()
         {
+            ViewBag.LogType = TempData["LogType"];
+            ViewBag.LogMessage = TempData["LogMessage"];
+
             var userId = User.Identity.GetUserId();
             return View(db.Transactions.Where(t => t.CreatedBy.Id == userId).OrderByDescending(t => t.CreatedDateTime).ToList());
         }
@@ -57,6 +60,16 @@ namespace PrettyCash.Controllers
         // GET: Transactions/Create
         public ActionResult Create()
         {
+            var user = db.Users.Find(User.Identity.GetUserId());
+            var userCurrency = db.UserCurrency.Where(c => c.ApplicationUser.Id == user.Id);
+
+            if(!userCurrency.Any())
+            {
+                TempData["LogType"] = 3;
+                TempData["LogMessage"] = "Please make sure you setup your default currency under currency menu";
+                return RedirectToAction("Index");
+            }
+
             return View();
         }
 
@@ -67,19 +80,28 @@ namespace PrettyCash.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "Id, AmountMST, Notes")] Transaction transaction)
         {
-            if (ModelState.IsValid)
+            try
             {
-                transaction.Id = Guid.NewGuid();
-                transaction.CreatedDateTime = DateTime.UtcNow;
-                transaction.CreatedBy = db.Users.Find(User.Identity.GetUserId());
-                transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.CreatedBy.Id).First().Currency;
-                
-                db.Transactions.Add(transaction);
-                db.SaveChanges();
+                if (ModelState.IsValid)
+                {
+                    transaction.Id = Guid.NewGuid();
+                    transaction.CreatedDateTime = DateTime.UtcNow;
+                    transaction.CreatedBy = db.Users.Find(User.Identity.GetUserId());
+                    transaction.Currency = db.UserCurrency.Where(u => u.ApplicationUser.Id == transaction.CreatedBy.Id).First().Currency;
+
+                    db.Transactions.Add(transaction);
+                    db.SaveChanges();
+                    return RedirectToAction("Index");
+                }
+
+                return View(transaction);
+            }
+            catch(Exception)
+            {
+                TempData["LogType"] = 1;
+                TempData["LogMessage"] = "An error occurred, please contact site adminitrator, no transaction has been created";
                 return RedirectToAction("Index");
             }
-
-            return View(transaction);
         }
 
         // GET: Transactions/Edit/5

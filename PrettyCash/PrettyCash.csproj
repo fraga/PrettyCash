@@ -247,6 +247,7 @@
     <Compile Include="Models\DefaultCurrencyViewModel.cs" />
     <Compile Include="Models\ExchangeRate.cs" />
     <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\InfologViewModel.cs" />
     <Compile Include="Models\ITraceable.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\MeViewModels.cs" />
@@ -348,6 +349,7 @@
     <Content Include="Views\Transactions\Index.cshtml" />
     <Content Include="Views\Transactions\Details.cshtml" />
     <Content Include="Views\Transactions\Create.cshtml" />
+    <Content Include="Views\Shared\Infolog.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

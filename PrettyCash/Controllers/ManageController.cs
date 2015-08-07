@@ -361,6 +361,9 @@ namespace PrettyCash.Controllers
 
                 db.Entry(userCurrency).State = System.Data.Entity.EntityState.Modified;
                 await db.SaveChangesAsync();
+
+                TempData["LogType"] = 4;
+                TempData["LogMessage"] = "Default currency set to " + userCurrency.Currency.CurrencyDisplay;
             }
             return RedirectToAction("Index", "Home");
         }

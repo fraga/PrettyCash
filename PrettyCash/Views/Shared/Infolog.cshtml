@@ -1,0 +1,45 @@
+﻿@{
+    int? logType = ViewBag.LogType;
+    string message = ViewBag.LogMessage;
+}
+
+@if (logType != null && !string.IsNullOrEmpty(message))
+{
+    switch (logType)
+    {
+        case 1:
+
+            <div class="alert alert-info fade in">
+                <a href="#" class="close" data-dismiss="alert">&times;</a>
+                <strong>Note!</strong> @message
+            </div>
+
+            break;
+
+        case 2:
+
+        <div class="alert alert-warning fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Warning!</strong> @message
+        </div>
+
+            break;
+        case 3:
+
+        <div class="alert alert-danger fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Error!</strong> @message
+        </div>
+
+            break;
+
+        case 4:
+
+        <div class="alert alert-success fade in">
+            <a href="#" class="close" data-dismiss="alert">&times;</a>
+            <strong>Success!</strong> @message
+        </div>
+
+            break;
+    }
+}
