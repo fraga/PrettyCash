@@ -364,6 +364,8 @@ namespace PrettyCash.Controllers
 
                 TempData["LogType"] = 4;
                 TempData["LogMessage"] = "Default currency set to " + userCurrency.Currency.CurrencyDisplay;
+
+                Session.Add("UserDefaultCurrency", userCurrency.Currency.ISO);
             }
 
             return RedirectToAction("Index", "Transactions");

@@ -1,4 +1,6 @@
 ﻿@using Microsoft.AspNet.Identity
+@{string currencyMenuValue = string.Format("<{0}>", Session["UserDefaultCurrency"].ToString()) ?? "Setup Currency";}
+
 @if (Request.IsAuthenticated)
 {
     using (Html.BeginForm("LogOff", "Account", new { area = "" }, FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
@@ -10,7 +12,7 @@
             @Html.ActionLink("Hello " + User.Identity.GetUserName() + "!", "Index", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
         </li>
         <li>
-            @Html.ActionLink("Currency", "EditDefaultCurrency", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" })
+            @Html.ActionLink(currencyMenuValue, "EditDefaultCurrency", "Manage", routeValues: new { area = "" }, htmlAttributes: new { title = "Manage" });
         </li>
         <li><a href="javascript:sessionStorage.removeItem('accessToken');$('#logoutForm').submit();">Log off</a></li>
     </ul>
