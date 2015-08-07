@@ -365,7 +365,8 @@ namespace PrettyCash.Controllers
                 TempData["LogType"] = 4;
                 TempData["LogMessage"] = "Default currency set to " + userCurrency.Currency.CurrencyDisplay;
             }
-            return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index", "Transactions");
         }
 
         protected override void Dispose(bool disposing)
