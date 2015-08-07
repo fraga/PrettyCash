@@ -98,7 +98,7 @@ namespace PrettyCash.Controllers
             }
             catch(Exception)
             {
-                TempData["LogType"] = 1;
+                TempData["LogType"] = 4;
                 TempData["LogMessage"] = "An error occurred, please contact site adminitrator, no transaction has been created";
                 return RedirectToAction("Index");
             }
