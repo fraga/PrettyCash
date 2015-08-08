@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettyCash", "PrettyCash\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettyCash.Tests", "PrettyCash.Tests\PrettyCash.Tests.csproj", "{20B126C9-7F22-4A94-AE7C-1B6048099DBE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PrettyCash.ExchangeRateJob", "PrettyCash.ExchangeRateJob\PrettyCash.ExchangeRateJob.csproj", "{F1A7FB00-4A82-4854-B3C1-0A83F0D9C8F8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{20B126C9-7F22-4A94-AE7C-1B6048099DBE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{20B126C9-7F22-4A94-AE7C-1B6048099DBE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{20B126C9-7F22-4A94-AE7C-1B6048099DBE}.Release|Any CPU.Build.0 = Release|Any CPU
+                {F1A7FB00-4A82-4854-B3C1-0A83F0D9C8F8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+                {F1A7FB00-4A82-4854-B3C1-0A83F0D9C8F8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+                {F1A7FB00-4A82-4854-B3C1-0A83F0D9C8F8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+                {F1A7FB00-4A82-4854-B3C1-0A83F0D9C8F8}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
