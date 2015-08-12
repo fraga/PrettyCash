@@ -27,7 +27,7 @@ namespace PrettyCash.Controllers
                 }
             }
 
-            return View();
+            return RedirectToAction("Index", "Transactions");
         }
     }
 }
