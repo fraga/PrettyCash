@@ -29,6 +29,10 @@ namespace PrettyCash.Models
         [DataType(DataType.MultilineText)]
         public string Notes { get; set; }
 
+        [Display(Name = "Date")]
+        [DataType(DataType.Date)]
+        public DateTime TransDate { get; set; }
+
         //traceable
         public DateTime CreatedDateTime { get; set; }
         public DateTime? ModifiedDateTime { get; set; }
