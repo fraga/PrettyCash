@@ -62,6 +62,9 @@ namespace PrettyCash.Controllers
         {
             var user = db.Users.Find(User.Identity.GetUserId());
             var userCurrency = db.UserCurrency.Where(c => c.ApplicationUser.Id == user.Id);
+            
+            Transaction transaction = new Transaction();
+            transaction.TransDate = DateTime.UtcNow.Date;
 
             if(!userCurrency.Any())
             {
@@ -70,7 +73,7 @@ namespace PrettyCash.Controllers
                 return RedirectToAction("Index");
             }
 
-            return View();
+            return View(transaction);
         }
 
         // POST: Transactions/Create
@@ -78,7 +81,7 @@ namespace PrettyCash.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id, AmountMST, Notes")] Transaction transaction)
+        public ActionResult Create([Bind(Include = "Id, AmountMST, TransDate, Notes")] Transaction transaction)
         {
             try
             {
@@ -96,7 +99,7 @@ namespace PrettyCash.Controllers
 
                 return View(transaction);
             }
-            catch(Exception)
+            catch(Exception ex)
             {
                 TempData["LogType"] = 3;
                 TempData["LogMessage"] = "An error occurred, please contact site adminitrator, no transaction has been created";
@@ -124,7 +127,7 @@ namespace PrettyCash.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id, AmountMST, AmountCur, CreatedDateTime, CreatedBy, ModifiedBy, ModifiedDateTime, Notes")] Transaction transaction)
+        public ActionResult Edit([Bind(Include = "Id, AmountMST, AmountCur, TransDate, CreatedDateTime, CreatedBy, ModifiedBy, ModifiedDateTime, Notes")] Transaction transaction)
         {
             if (ModelState.IsValid)
             {
