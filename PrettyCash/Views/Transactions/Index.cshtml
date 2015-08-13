@@ -19,6 +19,9 @@
             @Html.DisplayNameFor(model => model.Currency)
         </th>
         <th>
+            @Html.DisplayNameFor(model => model.TransDate)
+        </th>
+        <th>
             @Html.DisplayNameFor(model => model.Notes)
         </th>
         <th></th>
@@ -31,6 +34,9 @@
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Currency.ISO)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.TransDate)
         </td>
         <td>
             @Html.DisplayFor(modelItem => item.Notes)
